@@ -39,7 +39,16 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BusinessCardAppTheme {
-                BusniessCard()
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFFD6E9D6)),
+                    verticalArrangement = Arrangement.SpaceBetween
+                )
+                {
+                    FullNameBox(fullName= "Tran Trung Kien", title= "Developer", modifier = Modifier.padding(top = 160.dp))
+                    ContactInfoBox(phone="(+84) 0877635710", socialMedia= "@trantrungkien", email="ttk08112005@gmail.com", modifier = Modifier.padding(bottom = 40.dp))
+                }
                 }
             }
         }
@@ -129,7 +138,7 @@ fun ContactInfoBox(modifier: Modifier = Modifier, phone: String = "+123456789", 
 
 @Preview(showBackground = true)
 @Composable
-fun BusniessCard(modifier : Modifier = Modifier, fullName:String = "Tran Trung Kien", title:String = "Developer", phone: String = "+ 84 0877635710", socialMedia: String = "@TranTrungKien", email: String = "ttk08112005@gmail.com") {
+fun BusinessCard(modifier : Modifier = Modifier, fullName:String = "Tran Trung Kien", title:String = "Developer", phone: String = "+ 84 0877635710", socialMedia: String = "@TranTrungKien", email: String = "ttk08112005@gmail.com") {
     BusinessCardAppTheme {
         Column(
             modifier = modifier
