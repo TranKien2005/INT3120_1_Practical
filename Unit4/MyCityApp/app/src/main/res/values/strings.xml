@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MyCityApp</string>
+    <string name="title1">Title 1</string>
+    <string name="title2">Title 2</string>
+    <string name="title3">Title 3</string>
+    <string name="title4">Title 4</string>
+    <string name="title5">Title 5</string>
+    <string name="title6">Title 6</string>
+    <string name="title7">Title 7</string>
+    <string name="title8">Title 8</string>
+    <string name="title9">Title 9</string>
+    <string name="title10">Title 10</string>
+    <string name="description1">Description 1</string>
+    <string name="description2">Description 2</string>
+    <string name="description3">Description 3</string>
+    <string name="description4">Description 4</string>
+    <string name="description5">Description 5</string>
+    <string name="description6">Description 6</string>
+    <string name="description7">Description 7</string>
+    <string name="description8">Description 8</string>
+    <string name="description9">Description 9</string>
+    <string name="description10">Description 10</string>
+    <string name="category1">Category 1</string>
+    <string name="category2">Category 2</string>
+    <string name="category3">Category 3</string>
+    <string name="category4">Category 4</string>
+    <string name="category5">Category 5</string>
+    <string name="category6">Category 6</string>
+    <string name="category7">Category 7</string>
+    <string name="category8">Category 8</string>
+    <string name="category9">Category 9</string>
+    <string name="category10">Category 10</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="choose_recommendation">Choose Recommendation</string>
+    <string name="recommendation_details">Recommendation Details</string>
+    <string name="back">Back</string>
+</resources>
