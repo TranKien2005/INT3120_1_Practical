@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      https://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,16 +14,21 @@
  * limitations under the License.
  */
 
-package com.example.amphibians
+package com.example.inventory
 
 import android.app.Application
-import com.example.amphibians.di.AppContainer
-import com.example.amphibians.di.DefaultAppContainer
+import com.example.inventory.data.AppContainer
+import com.example.inventory.data.AppDataContainer
 
-class AmphibiansApplication : Application() {
+class InventoryApplication : Application() {
+
+    /**
+     * AppContainer instance used by the rest of classes to obtain dependencies
+     */
     lateinit var container: AppContainer
+
     override fun onCreate() {
         super.onCreate()
-        container = DefaultAppContainer()
+        container = AppDataContainer(this)
     }
 }

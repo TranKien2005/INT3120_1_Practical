@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      https://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.amphibians
+package com.example.inventory.data
 
-import android.app.Application
-import com.example.amphibians.di.AppContainer
-import com.example.amphibians.di.DefaultAppContainer
+import kotlinx.coroutines.flow.Flow
 
-class AmphibiansApplication : Application() {
-    lateinit var container: AppContainer
-    override fun onCreate() {
-        super.onCreate()
-        container = DefaultAppContainer()
-    }
+/**
+ * Repository that provides insert, update, delete, and retrieve of [Item] from a given data source.
+ */
+interface ItemsRepository {
+    fun getAllItemsStream(): Flow<List<Item>>
+    fun getItemStream(itemId: Int): Flow<Item?>
+    suspend fun insertItem(item: Item)
+    suspend fun updateItem(item: Item)
+    suspend fun deleteItem(item: Item)
+
 }
