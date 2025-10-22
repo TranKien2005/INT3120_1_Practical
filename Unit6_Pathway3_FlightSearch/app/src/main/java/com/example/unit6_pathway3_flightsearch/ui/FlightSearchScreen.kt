@@ -1,7 +1,6 @@
 package com.example.unit6_pathway3_flightsearch.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,17 +12,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -45,8 +44,8 @@ import com.example.unit6_pathway3_flightsearch.ui.theme.inversePrimaryLight
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlightSearchScreen(
+    modifier: Modifier = Modifier,
     viewModel: FlightSearchViewModel = viewModel(factory = FlightSearchViewModel.Factory),
-    modifier: Modifier = Modifier
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val text by viewModel.search.collectAsState()
@@ -66,13 +65,17 @@ fun FlightSearchScreen(
                 .fillMaxSize()
                 .padding(8.dp)
         ) {
-            OutlinedTextField(
+            // Use default filled TextField (normal search shape).
+            // Add horizontal padding so the placeholder lines up with top bar title (start = 16.dp).
+            TextField(
                 value = text,
                 onValueChange = viewModel::onTyping,
-                modifier = Modifier.fillMaxWidth(),
-                leadingIcon = { Icon(Icons.Filled.Search, null) },
-                placeholder = { Text(text = "Enter departure airport") },
-                singleLine = true
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp),
+                placeholder = { Text(text = stringResource(R.string.search_hint)) },
+                singleLine = true,
+
             )
             Spacer(Modifier.height(8.dp))
             when {
@@ -109,7 +112,6 @@ fun FlightSearchScreen(
 fun FlightSuggestion(
     airportList: List<Airport>,
     onClick: (Airport) -> Unit,
-    modifier: Modifier = Modifier
 ) {
     LazyColumn {
         items(airportList) { airport ->
@@ -117,7 +119,16 @@ fun FlightSuggestion(
                 onClick = { onClick(airport) },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "${airport.iataCode}  ${airport.name}")
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = airport.iataCode,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
+                    Text(
+                        text = airport.name
+                    )
+                }
             }
         }
     }
@@ -129,7 +140,6 @@ fun FlightList(
     depAirport: Airport,
     flightDescriptionList: List<FlightDescription>,
     onFavoriteClick: (FlightDescription) -> Unit,
-    modifier: Modifier = Modifier
 ) {
     Text(
         text = stringResource(R.string.flights_from, depAirport.iataCode),
@@ -149,7 +159,6 @@ fun FlightList(
 fun FavoriteFlightList(
     flightDescriptionList: List<FlightDescription>,
     onFavoriteClick: (FlightDescription) -> Unit,
-    modifier: Modifier = Modifier
 ) {
     Text(
         text = stringResource(R.string.favorite_routes),

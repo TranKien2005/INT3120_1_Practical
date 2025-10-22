@@ -112,38 +112,38 @@ class FlightSearchViewModel(
         }
     }
 
-//    fun getFavoriteFlights(): Flow<List<FlightDescription>> = flightRepository
-//        .getAllFlights()
-//        .map { flightList ->
-//            flightList.map { flight ->
-//                val departure = airportRepository.getAirportByCode(flight.departureCode).first()
-//                val destination = airportRepository.getAirportByCode(flight.destinationCode).first()
-//
-//                FlightDescription(
-//                    id = flight.id,
-//                    departure = departure,
-//                    destination = destination,
-//                    isFavorite = true
-//                )
-//            }
-//        }
+    fun getFavoriteFlights(): Flow<List<FlightDescription>> = flightRepository
+        .getAllFlights()
+        .map { flightList ->
+            flightList.map { flight ->
+                val departure = airportRepository.getAirportByCode(flight.departureCode).first()
+                val destination = airportRepository.getAirportByCode(flight.destinationCode).first()
+
+                FlightDescription(
+                    id = flight.id,
+                    departure = departure,
+                    destination = destination,
+                    isFavorite = true
+                )
+            }
+        }
 
 
     fun getSuggestionAirports(text: String): Flow<List<Airport>> = airportRepository.getAirportSuggestion(text)
 
-//    fun getFlightList(depAirport: Airport): Flow<List<FlightDescription>> = airportRepository
-//        .getAllAirportExcept(depAirport.iataCode)
-//        .map { airportList ->
-//            airportList.map { desAirport ->
-//                val id = flightRepository.isFavoriteFlight(depAirport.iataCode, desAirport.iataCode).first()
-//                FlightDescription(
-//                    id = id,
-//                    departure = depAirport,
-//                    destination = desAirport,
-//                    isFavorite = (id != 0)
-//                )
-//            }
-//        }
+    fun getFlightList(depAirport: Airport): Flow<List<FlightDescription>> = airportRepository
+        .getAllAirportExcept(depAirport.iataCode)
+        .map { airportList ->
+            airportList.map { desAirport ->
+                val id = flightRepository.isFavoriteFlight(depAirport.iataCode, desAirport.iataCode).first()
+                FlightDescription(
+                    id = id,
+                    departure = depAirport,
+                    destination = desAirport,
+                    isFavorite = (id != 0)
+                )
+            }
+        }
 
     suspend fun insertFlight(flightDescription: FlightDescription) = flightRepository.insertFlight(flightDescription.toFlight())
     suspend fun deleteFlight(flightDescription: FlightDescription) = flightRepository.deleteFlight(flightDescription.toFlight())

@@ -5,4 +5,5 @@
     <string name="favorite">Favorite</string>
     <string name="flights_from">Flights from %1$s</string>
     <string name="favorite_routes">Favorite routes</string>
+    <string name="search_hint">Nhập mã sân bay — VD: HAN → DAD</string>
 </resources>

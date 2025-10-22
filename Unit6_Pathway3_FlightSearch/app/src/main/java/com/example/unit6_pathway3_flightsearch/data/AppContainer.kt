@@ -2,9 +2,6 @@ package com.example.unit6_pathway3_flightsearch.data
 
 import android.content.Context
 
-/**
- * App container for Dependency injection.
- */
 interface AppContainer {
     val airportRepository: AirportRepository
     val flightRepository: FlightRepository
